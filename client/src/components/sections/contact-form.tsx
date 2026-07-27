@@ -18,19 +18,16 @@ import { cn } from "@/lib/utils";
 interface FormData {
   name: string;
   email: string;
-  company: string;
+  subject: string;
   phone: string;
-  projectType: string;
-  budgetRange: string;
-  timeline: string;
-  description: string;
+  message: string;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
-  company?: string;
-  description?: string;
+  subject?: string;
+  message?: string;
 }
 
 const projectTypes = [
@@ -65,17 +62,13 @@ function validateEmail(email: string): boolean {
 }
 
 export function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    subject: "",
     phone: "",
-    projectType: "",
-    budgetRange: "",
-    timeline: "",
-    description: "",
+    message: "",
   });
-
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -93,18 +86,10 @@ export function ContactForm() {
       newErrors.email = "Please enter a valid email address";
     }
 
-    if (!formData.company.trim()) {
-      newErrors.company = "Company is required";
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = "Project description is required";
-    }
-
     return newErrors;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const validationErrors = validate();
@@ -114,16 +99,32 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
-  }
+    const data = new FormData(e.currentTarget);
 
+    data.append("access_key", "ed6420a2-88cc-4185-8ff7-eeb932c04135");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: data,
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setIsSubmitted(true);
+      e.currentTarget.reset();
+    } else {
+      alert(result.message);
+    }
+  }
   function updateField(field: keyof FormData, value: string) {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
+      setErrors(prev => ({ ...prev, [field]: undefined }));
     }
   }
 
@@ -179,19 +180,19 @@ export function ContactForm() {
           <Card>
             <CardContent className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name & Email */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name *</Label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
                       value={formData.name}
-                      onChange={(e) => updateField("name", e.target.value)}
+                      onChange={e => updateField("name", e.target.value)}
                       className={cn(
                         "flex h-11 w-full rounded-lg border bg-card px-3 py-2 text-sm text-primary placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background",
-                        errors.name
-                          ? "border-red-500/50"
-                          : "border-border"
+                        errors.name ? "border-red-500/50" : "border-border",
                       )}
                       placeholder="John Doe"
                     />
@@ -204,16 +205,15 @@ export function ContactForm() {
                     <Label htmlFor="email">Email *</Label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => updateField("email", e.target.value)}
+                      onChange={e => updateField("email", e.target.value)}
                       className={cn(
                         "flex h-11 w-full rounded-lg border bg-card px-3 py-2 text-sm text-primary placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background",
-                        errors.email
-                          ? "border-red-500/50"
-                          : "border-border"
+                        errors.email ? "border-red-500/50" : "border-border",
                       )}
-                      placeholder="john@company.com"
+                      placeholder="john@example.com"
                     />
                     {errors.email && (
                       <p className="text-xs text-red-400">{errors.email}</p>
@@ -221,24 +221,24 @@ export function ContactForm() {
                   </div>
                 </div>
 
+                {/* Subject & Phone */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="company">Company *</Label>
+                    <Label htmlFor="subject">Subject *</Label>
                     <input
-                      id="company"
+                      id="subject"
+                      name="subject"
                       type="text"
-                      value={formData.company}
-                      onChange={(e) => updateField("company", e.target.value)}
+                      value={formData.subject}
+                      onChange={e => updateField("subject", e.target.value)}
                       className={cn(
                         "flex h-11 w-full rounded-lg border bg-card px-3 py-2 text-sm text-primary placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background",
-                        errors.company
-                          ? "border-red-500/50"
-                          : "border-border"
+                        errors.subject ? "border-red-500/50" : "border-border",
                       )}
-                      placeholder="Company Inc."
+                      placeholder="Project Inquiry"
                     />
-                    {errors.company && (
-                      <p className="text-xs text-red-400">{errors.company}</p>
+                    {errors.subject && (
+                      <p className="text-xs text-red-400">{errors.subject}</p>
                     )}
                   </div>
 
@@ -246,101 +246,33 @@ export function ContactForm() {
                     <Label htmlFor="phone">Phone</Label>
                     <input
                       id="phone"
+                      name="phone"
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => updateField("phone", e.target.value)}
+                      onChange={e => updateField("phone", e.target.value)}
                       className="flex h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-primary placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                       placeholder="+1 (555) 000-0000"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                  <div className="space-y-2">
-                    <Label>Project Type</Label>
-                    <Select
-                      value={formData.projectType}
-                      onValueChange={(value) =>
-                        updateField("projectType", value)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {projectTypes.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Budget Range</Label>
-                    <Select
-                      value={formData.budgetRange}
-                      onValueChange={(value) =>
-                        updateField("budgetRange", value)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {budgetRanges.map((range) => (
-                          <SelectItem key={range} value={range}>
-                            {range}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Timeline</Label>
-                    <Select
-                      value={formData.timeline}
-                      onValueChange={(value) =>
-                        updateField("timeline", value)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select timeline" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {timelineOptions.map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
+                {/* Message */}
                 <div className="space-y-2">
-                  <Label htmlFor="description">Project Description *</Label>
+                  <Label htmlFor="message">Message *</Label>
                   <textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) =>
-                      updateField("description", e.target.value)
-                    }
-                    rows={5}
+                    id="message"
+                    name="message"
+                    rows={6}
+                    value={formData.message}
+                    onChange={e => updateField("message", e.target.value)}
                     className={cn(
                       "flex w-full rounded-lg border bg-card px-3 py-2 text-sm text-primary placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background resize-none",
-                      errors.description
-                        ? "border-red-500/50"
-                        : "border-border"
+                      errors.message ? "border-red-500/50" : "border-border",
                     )}
-                    placeholder="Tell us about your project, goals, and any specific requirements..."
+                    placeholder="Tell us about your project..."
                   />
-                  {errors.description && (
-                    <p className="text-xs text-red-400">
-                      {errors.description}
-                    </p>
+                  {errors.message && (
+                    <p className="text-xs text-red-400">{errors.message}</p>
                   )}
                 </div>
 
@@ -352,8 +284,8 @@ export function ContactForm() {
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Submitting...
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
                     </>
                   ) : (
                     "Send Message"
