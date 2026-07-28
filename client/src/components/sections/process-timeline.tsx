@@ -52,7 +52,7 @@ export function ProcessTimeline() {
                     className={cn(
                       "flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-semibold transition-all duration-300",
                       activeStep === s.step
-                        ? "border-accent bg-accent text-background shadow-[0_0_12px_rgba(34,211,238,0.4)]"
+                        ? "border-accent bg-accent text-background shadow-[0_0_12px_rgba(255,255,255,0.25)]"
                         : activeStep > s.step
                           ? "border-accent bg-accent/10 text-accent"
                           : "border-border bg-secondary text-secondary-text group-hover:border-accent/50"
@@ -138,7 +138,7 @@ export function ProcessTimeline() {
                     className={cn(
                       "absolute -left-2 top-6 h-4 w-4 rounded-full border-2 transition-all duration-300",
                       isActive
-                        ? "border-accent bg-accent shadow-[0_0_10px_rgba(34,211,238,0.4)]"
+                        ? "border-accent bg-accent shadow-[0_0_10px_rgba(255,255,255,0.25)]"
                         : "border-border bg-secondary"
                     )}
                   />

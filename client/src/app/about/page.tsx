@@ -52,7 +52,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ export default function AboutPage() {
               About
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
-              About Mafia Tech
+              About CirqleX
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-secondary-text">
               Professional digital product engineering and technology partner.
@@ -86,7 +86,7 @@ export default function AboutPage() {
               Our Mission
             </h2>
             <p className="mt-6 text-lg text-secondary-text leading-relaxed">
-              We build software that moves businesses forward. Mafia Tech is a
+              We build software that moves businesses forward. CirqleX is a
               digital product engineering company focused on delivering
               high-quality, scalable technology solutions. We partner with
               startups, SMEs, and enterprises to design, build, and support
@@ -211,7 +211,7 @@ export default function AboutPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-secondary-text">
               Our team is building this section. Check back soon to learn more
-              about the people behind Mafia Tech.
+               about the people behind CirqleX.
             </p>
             <Badge variant="default" className="mt-4">
               Coming Soon

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { SITE_NAME } from "@/lib/constants";
 import {
@@ -31,8 +32,13 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-3 lg:grid-cols-6">
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-background font-bold text-sm">
-                M
+              <div className="relative h-8 w-8 overflow-hidden rounded-lg">
+                <Image
+                  src="/logo.svg"
+                  alt={SITE_NAME}
+                  fill
+                  className="object-contain"
+                />
               </div>
               <span className="text-lg font-bold text-primary tracking-tight">
                 {SITE_NAME}

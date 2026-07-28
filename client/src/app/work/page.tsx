@@ -24,7 +24,7 @@ export default function WorkPage() {
   return (
     <div className="min-h-screen bg-background">
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ export default function WorkPage() {
             {caseStudies.map((study) => (
               <motion.div key={study.slug} variants={itemVariants}>
                 <Link href={`/work/${study.slug}`} className="block h-full">
-                  <Card className="group h-full hover:border-accent/50 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)] transition-all duration-300">
+                  <Card className="group h-full hover:border-accent/50 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] transition-all duration-300">
                     <CardContent className="p-8">
                       <div className="flex items-start justify-between mb-4">
                         <div>

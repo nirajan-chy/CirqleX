@@ -1,6 +1,5 @@
 import HeroSection from "@/components/hero/hero-section";
 import { Capabilities } from "@/components/sections/capabilities";
-import { ServicesGrid } from "@/components/sections/services-grid";
 import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { ProcessTimeline } from "@/components/sections/process-timeline";
 import { TechEcosystem } from "@/components/sections/tech-ecosystem";
@@ -15,7 +14,6 @@ export default function Home() {
     <>
       <HeroSection />
       <Capabilities />
-      <ServicesGrid />
       <WhyChooseUs />
       <ProcessTimeline />
       <TechEcosystem />

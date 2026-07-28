@@ -11,13 +11,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-accent text-background hover:bg-hover-accent shadow-[0_0_20px_rgba(34,211,238,0.25)]",
+          "bg-accent text-background hover:bg-hover-accent shadow-[0_0_20px_rgba(255,255,255,0.15)]",
         outline:
-          "border border-border bg-transparent text-primary hover:border-accent hover:text-accent",
+          "border border-border bg-transparent text-primary hover:bg-card/50",
         ghost:
           "text-secondary-text hover:text-primary hover:bg-card",
         link:
-          "text-accent underline-offset-4 hover:underline",
+          "text-primary underline-offset-4 hover:text-secondary-text",
       },
       size: {
         default: "h-11 px-6 py-2",

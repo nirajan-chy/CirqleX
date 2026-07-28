@@ -12,7 +12,7 @@ function Badge({ className, variant = "default", ...props }: BadgeProps) {
         "inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium transition-colors",
         variant === "default" && "bg-card border border-border text-secondary-text",
         variant === "outline" && "border border-border text-secondary-text",
-        variant === "accent" && "bg-accent/10 border border-accent/20 text-accent",
+        variant === "accent" && "bg-white/10 border border-white/20 text-white",
         className
       )}
       {...props}

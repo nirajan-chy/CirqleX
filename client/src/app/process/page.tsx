@@ -33,7 +33,7 @@ export default function ProcessPage() {
   return (
     <div className="min-h-screen bg-background">
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function ProcessPage() {
                           className={cn(
                             "transition-all duration-300 cursor-pointer",
                             isExpanded
-                              ? "border-accent/50 shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+                              ? "border-accent/50 shadow-[0_0_30px_rgba(255,255,255,0.08)]"
                               : "hover:border-accent/30"
                           )}
                         >

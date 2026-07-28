@@ -36,7 +36,11 @@ export function TextReveal({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: "-80px" });
 
-  const words = text.split(" ");
+  // Support both normal newlines and the literal `n separator used by the
+  // existing hero copy, while keeping each line independently readable.
+  const lines = text
+    .split(/(?:`n|\n)/)
+    .map((line) => line.trim().split(/\s+/).filter(Boolean));
 
   return (
     <div ref={ref} className={cn("overflow-hidden", className)}>
@@ -45,25 +49,29 @@ export function TextReveal({
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         transition={{ staggerChildren: speed, delayChildren: delay }}
-        className="flex flex-wrap"
+        className="space-y-1"
       >
-        {words.map((word, wordIndex) => (
-          <span key={wordIndex} className="text-reveal-mask mr-[0.3em]">
-            <motion.span
-              className="text-reveal-inner"
-              variants={wordVariants}
-              transition={{
-                y: { duration: 0.5, ease: [0.33, 1, 0.68, 1] as const },
-                opacity: { duration: 0.4 },
-              }}
-            >
-              {word === "Software" ? (
-                <span className="gradient-text-animated">{word}</span>
-              ) : (
-                word
-              )}
-            </motion.span>
-          </span>
+        {lines.map((words, lineIndex) => (
+          <div key={`${words.join("-")}-${lineIndex}`} className="flex flex-wrap justify-center">
+            {words.map((word, wordIndex) => (
+              <span key={`${word}-${wordIndex}`} className="text-reveal-mask mr-[0.3em]">
+                <motion.span
+                  className="text-reveal-inner"
+                  variants={wordVariants}
+                  transition={{
+                    y: { duration: 0.5, ease: [0.33, 1, 0.68, 1] as const },
+                    opacity: { duration: 0.4 },
+                  }}
+                >
+                  {word === "Software" ? (
+                    <span className="gradient-text-animated">{word}</span>
+                  ) : (
+                    word
+                  )}
+                </motion.span>
+              </span>
+            ))}
+          </div>
         ))}
       </motion.div>
     </div>

@@ -186,9 +186,9 @@ function NetworkStructure() {
       <points ref={nodesRef} geometry={nodesGeometry}>
         <pointsMaterial
           size={0.07}
-          color="#22D3EE"
+          color="#FFFFFF"
           transparent
-          opacity={0.8}
+          opacity={0.7}
           sizeAttenuation
           depthWrite={false}
         />
@@ -198,9 +198,9 @@ function NetworkStructure() {
       <lineSegments geometry={edgesGeometry}>
         <lineBasicMaterial
           ref={edgeMaterialRef}
-          color="#22D3EE"
+          color="#FFFFFF"
           transparent
-          opacity={0.1}
+          opacity={0.08}
           depthWrite={false}
         />
       </lineSegments>
@@ -209,9 +209,9 @@ function NetworkStructure() {
       <points ref={particleRef} geometry={particleGeometry}>
         <pointsMaterial
           size={0.05}
-          color="#06B6D4"
+          color="#CCCCCC"
           transparent
-          opacity={0.9}
+          opacity={0.8}
           sizeAttenuation
           depthWrite={false}
         />

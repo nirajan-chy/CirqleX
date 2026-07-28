@@ -1,0 +1,11 @@
+.orbit, .orbitSmall { position: absolute; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; pointer-events: none; animation: orbit-drift 18s ease-in-out infinite alternate; }
+.orbit { z-index: 2; width: min(72vw, 850px); aspect-ratio: 1; right: -22vw; top: 8%; }
+.orbitSmall { z-index: 2; width: min(35vw, 390px); aspect-ratio: 1; left: -16vw; bottom: -12vw; animation-duration: 14s; animation-direction: alternate-reverse; }
+.sideLabel { position: absolute; z-index: 3; top: 50%; right: 17px; color: rgba(255, 255, 255, 0.48); font-family: var(--font-geist-mono), monospace; font-size: 9px; letter-spacing: 0.18em; writing-mode: vertical-rl; transform: translateY(-50%); }
+.heroRule { position: absolute; z-index: 2; left: 0; right: 0; top: 18%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.2) 80%, transparent); }
+.detailCard { position: relative; max-width: 25rem; border-left: 1px solid rgba(255, 255, 255, 0.42); padding: 1rem 0 0 1.25rem; }
+.cardIndex { display: block; margin-bottom: 2.75rem; color: rgba(255, 255, 255, 0.5); font-family: var(--font-geist-mono), monospace; font-size: 10px; letter-spacing: 0.16em; }
+@keyframes orbit-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-2.5%, 4%, 0) scale(1.06); } }
+@media (max-width: 640px) { .sideLabel { display: none; } .orbit { right: -45vw; top: 5%; width: 110vw; } .orbitSmall { width: 62vw; left: -32vw; bottom: -15vw; } }
+@media (prefers-reduced-motion: reduce) { .orbit, .orbitSmall { animation: none; } }
+
