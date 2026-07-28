@@ -61,12 +61,7 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-                <Image
-                src="/logo.svg"
-                alt={SITE_NAME}
-                fill
-                className="object-contain"
-              />
+             
             </motion.div>
             <span className="text-lg font-bold text-primary tracking-tight">
               {SITE_NAME}

@@ -40,17 +40,11 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center"
           >
-            <Badge variant="accent" className="mb-4">
-              Insights
-            </Badge>
-            <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-              The Knowledge Hub
-            </h2>
-            <p className="mt-4 max-w-2xl mx-auto text-secondary-text">
-              Insights, tutorials, and deep dives into modern software engineering.
-            </p>
+        
+            
+           
           </motion.div>
 
           <motion.div
