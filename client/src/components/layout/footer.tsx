@@ -34,10 +34,11 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative h-8 w-8 overflow-hidden rounded-lg">
                 <Image
-                  src="/logo.svg"
-                  alt={SITE_NAME}
+                  src="/images/logo.png"
+                  alt="CirqleX Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain scale-200 -translate-y-1"
+                  priority
                 />
               </div>
               <span className="text-lg font-bold text-primary tracking-tight">
@@ -61,13 +62,13 @@ export function Footer() {
             </div>
           </div>
 
-          {footerSections.map((section) => (
+          {footerSections.map(section => (
             <div key={section.title}>
               <h3 className="text-sm font-semibold text-primary mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-3">
-                {section.links.map((link) => (
+                {section.links.map(link => (
                   <li key={link.href}>
                     <Link
                       href={link.href}

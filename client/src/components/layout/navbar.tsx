@@ -44,7 +44,7 @@ export function Navbar() {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
             ? "bg-background/80 backdrop-blur-xl border-b border-border"
-            : "bg-transparent"
+            : "bg-transparent",
         )}
       >
         {/* Scroll progress indicator inside navbar */}
@@ -61,7 +61,13 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-             
+              <Image
+                src="/images/logo.png"
+                alt="CirqleX Logo"
+                fill
+                className="object-contain scale-200 -translate-y-1"
+                priority
+              />
             </motion.div>
             <span className="text-lg font-bold text-primary tracking-tight">
               {SITE_NAME}
@@ -69,7 +75,7 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -154,10 +160,7 @@ export function Navbar() {
               </div>
               <div className="p-4 border-t border-border">
                 <Button className="w-full" asChild>
-                  <Link
-                    href="/contact"
-                    onClick={() => setMobileOpen(false)}
-                  >
+                  <Link href="/contact" onClick={() => setMobileOpen(false)}>
                     Start a Project
                   </Link>
                 </Button>
