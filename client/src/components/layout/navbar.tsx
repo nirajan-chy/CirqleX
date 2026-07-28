@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -55,12 +56,17 @@ export function Navbar() {
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2 group">
             <motion.div
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-background font-bold text-sm"
+              className="relative h-8 w-8 overflow-hidden rounded-lg"
               whileHover={{ scale: 1.08, rotate: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              M
+                <Image
+                src="/logo.svg"
+                alt={SITE_NAME}
+                fill
+                className="object-contain"
+              />
             </motion.div>
             <span className="text-lg font-bold text-primary tracking-tight">
               {SITE_NAME}

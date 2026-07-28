@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Dancing_Script, Geist_Mono, Manrope } from "next/font/google";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AmbientVideoBackground } from "@/components/layout/ambient-video-background";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { CursorTrail } from "@/components/ui/cursor-trail";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +62,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#070B14",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -61,13 +71,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-background text-primary antialiased">
+    <html lang="en" className={`${manrope.variable} ${geistMono.variable} ${dancingScript.variable}`}>
+      <body className="relative isolate min-h-screen bg-background text-primary antialiased">
+        <AmbientVideoBackground />
+        <CursorTrail />
         <ScrollProgress />
         <Navbar />
-        <main className="flex-1 page-reveal">{children}</main>
-        <Footer />
+        <main className="relative z-[1] flex-1 page-reveal">{children}</main>
+        <div className="relative z-[1]"><Footer /></div>
       </body>
     </html>
   );
 }
+
+

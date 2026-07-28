@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://mafiatech.dev/sitemap.xml",
+    sitemap: "https://cirqlex.com/sitemap.xml",
   };
 }
