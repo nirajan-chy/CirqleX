@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { AmbientVideoBackground } from "@/components/layout/ambient-video-background";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CursorTrail } from "@/components/ui/cursor-trail";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -77,6 +78,7 @@ export default function RootLayout({
         <CursorTrail />
         <ScrollProgress />
         <Navbar />
+        <WhatsAppButton />
         <main className="relative z-[1] flex-1 page-reveal">{children}</main>
         <div className="relative z-[1]"><Footer /></div>
       </body>
